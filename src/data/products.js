@@ -98,7 +98,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: 9,
+    id: 1,
     name: "Headphones",
     description: "Premium quality wireless headphones with noise cancellation and 30-hour battery life.",
     price: 1,
@@ -111,7 +111,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: 10,
+    id: 2,
     name: "Wireless ",
     description: "Premium quality wireless headphones with noise cancellation and 30-hour battery life.",
     price: 99,
@@ -124,7 +124,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: 11,
+    id: 3,
     name: "Bluetooth",
     description: "Premium quality wireless headphones with noise cancellation and 30-hour battery life.",
     price: 64,

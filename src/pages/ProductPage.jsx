@@ -1,8 +1,10 @@
 "use client"
 
 import { useParams } from "react-router-dom"
-import ProductDetail from "../components/product/ProductDetail"
 import { products } from "../data/products"
+import ProductDetail from "../components/product/ProductDetail"
+// import { products } from "../data/products"
+
 
 const ProductPage = () => {
   const { id } = useParams()

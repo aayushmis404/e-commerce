@@ -7,7 +7,6 @@ import Footer from "./components/layout/Footer"
 import HomePage from "./pages/HomePage"
 import ProductsPage from "./pages/ProductsPage"
 import ProductPage from "./pages/ProductPage"
-// import CategoriesPage from "./pages/CategoriesPage"
 import AboutPage from "./pages/AboutPage"
 import CartPage from "./pages/CartPage"
 import CheckoutPage from "./pages/CheckoutPage"
@@ -25,7 +24,6 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/products" element={<ProductsPage />} />
                   <Route path="/product/:id" element={<ProductPage />} />
-                  {/* <Route path="/categories" element={<CategoriesPage />} /> */}
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />

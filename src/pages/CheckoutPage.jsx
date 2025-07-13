@@ -157,32 +157,28 @@ const CheckoutPage = () => {
                       className="bg-gray-50"
                     />
                   </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="province" className="block text-sm font-medium text-gray-700 mb-1">
+                        Province
+                      </label>
+                      <Input id="provience" required />
+                    </div>
+                    <div>
+                      <label htmlFor="municipality" className="block text-sm font-medium text-gray-700 mb-1">
+                        Municipality
+                      </label>
+                      <Input id="municipality" required />
+                    </div>
+                  </div>
                   <div>
                     <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
                       Address
                     </label>
                     <Input id="address" required />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
-                        City
-                      </label>
-                      <Input id="city" required />
-                    </div>
-                    <div>
-                      <label htmlFor="pincode" className="block text-sm font-medium text-gray-700 mb-1">
-                        PIN Code
-                      </label>
-                      <Input id="pincode" required />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">
-                      State
-                    </label>
-                    <Input id="state" required />
-                  </div>
+                  
+                 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number

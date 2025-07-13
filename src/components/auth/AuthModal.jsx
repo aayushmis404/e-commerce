@@ -31,7 +31,7 @@ const AuthModal = ({ isOpen, onClose, mode, onModeChange }) => {
       addToast("Welcome back!", "success")
     } else {
       login({ id: "1", name: name || email.split("@")[0], email })
-      addToast("Account created! Welcome to ShopHub!", "success")
+      addToast("Account created! Welcome to EasyShop!", "success")
     }
 
     setIsLoading(false)
