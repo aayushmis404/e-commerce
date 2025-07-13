@@ -266,10 +266,10 @@ const CheckoutPage = () => {
                       <span>Shipping</span>
                       <span>{formatPrice(shipping)}</span>
                     </div>
-                    <div className="flex justify-between">
+                    {/* <div className="flex justify-between">
                       <span>GST (18%)</span>
                       <span>{formatPrice(tax)}</span>
-                    </div>
+                    </div> */}
                     <hr />
                     <div className="flex justify-between text-lg font-bold">
                       <span>Total</span>

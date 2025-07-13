@@ -32,9 +32,9 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+                <span className="text-white font-bold text-lg">ES</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">ShopHub</span>
+              <span className="text-xl font-bold text-gray-900">EasyShop</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -44,9 +44,6 @@ const Navbar = () => {
               </Link>
               <Link to="/products" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Products
-              </Link>
-              <Link to="/categories" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Categories
               </Link>
               <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
                 About

@@ -7,7 +7,7 @@ const AboutPage = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">About NexCart</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">About EasyShop</h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto">
             We're passionate about bringing you the best products at unbeatable prices, with exceptional customer
             service that makes shopping a joy.
@@ -23,7 +23,7 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  Founded in 2020, NexCart began as a small startup with a big dream: to create an online shopping
+                  Founded in 2025, EasyShop began as a small startup with a big dream: to create an online shopping
                   experience that puts customers first. What started in a garage has grown into a trusted platform
                   serving thousands of happy customers worldwide.
                 </p>

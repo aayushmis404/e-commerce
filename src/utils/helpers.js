@@ -1,9 +1,7 @@
 export const formatPrice = (price) => {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-  }).format(price)
+  return new Intl.NumberFormat("en-IN").format(price)
 }
+
 
 export const formatDate = (date) => {
   return new Intl.DateTimeFormat("en-IN", {

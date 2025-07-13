@@ -10,6 +10,7 @@ import { useAuth } from "../contexts/AuthContext"
 import { formatPrice } from "../utils/helpers"
 import AuthModal from "../components/auth/AuthModal"
 
+
 const CartPage = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [authMode, setAuthMode] = useState("login")
@@ -128,14 +129,14 @@ const CartPage = () => {
                   <span>Shipping</span>
                   <span>{formatPrice(shipping)}</span>
                 </div>
-                <div className="flex justify-between">
+                {/* <div className="flex justify-between">
                   <span>GST (18%)</span>
                   <span>{formatPrice(tax)}</span>
-                </div>
+                </div> */}
                 <hr />
                 <div className="flex justify-between text-lg font-bold">
                   <span>Total</span>
-                  <span>{formatPrice(getCartTotal() + shipping + tax)}</span>
+                  <span>{formatPrice(getCartTotal() + shipping )}</span>
                 </div>
               </CardContent>
             </Card>

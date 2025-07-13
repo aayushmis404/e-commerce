@@ -12,9 +12,9 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">NT</span>
+                <span className="text-white font-bold text-lg">ES</span>
               </div>
-              <span className="text-xl font-bold">NexCart</span>
+              <span className="text-xl font-bold">EasyShop</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Your ultimate shopping destination for quality products at great prices. We're committed to providing
@@ -48,11 +48,6 @@ const Footer = () => {
               <li>
                 <Link to="/products" className="text-gray-300 hover:text-white transition-colors">
                   Products
-                </Link>
-              </li>
-              <li>
-                <Link to="/categories" className="text-gray-300 hover:text-white transition-colors">
-                  Categories
                 </Link>
               </li>
               <li>
@@ -127,7 +122,7 @@ const Footer = () => {
         <hr className="my-8 border-gray-700" />
 
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-sm text-gray-300">© 2024 NexCart. All rights reserved.</div>
+          <div className="text-sm text-gray-300">© 2024 EasyShop. All rights reserved.</div>
           <div className="flex space-x-6 text-sm text-gray-300">
             <Link to="/privacy" className="hover:text-white transition-colors">
               Privacy Policy
