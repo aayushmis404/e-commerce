@@ -1,33 +1,91 @@
 "use client"
 
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { CreditCard, MapPin, Package } from "lucide-react"
+import { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { CreditCard, MapPin, Package, AlertCircle } from "lucide-react"
 import Button from "../components/ui/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card"
 import Input from "../components/ui/Input"
 import { useCart } from "../contexts/CartContext"
+import { useAuth } from "../contexts/AuthContext"
 import { useToast } from "../contexts/ToastContext"
 import { formatPrice } from "../utils/helpers"
 
 const CheckoutPage = () => {
   const [isProcessing, setIsProcessing] = useState(false)
   const { items, getCartTotal, clearCart } = useCart()
+  const { user } = useAuth()
   const { addToast } = useToast()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  // Get guest info from navigation state (if coming from cart as guest)
+  const guestInfo = location.state?.guestInfo
+
+  // Redirect if not authenticated and no guest info
+  useEffect(() => {
+    if (!user && !guestInfo) {
+      addToast("Please login or provide guest information to proceed with checkout", "error")
+      navigate("/cart")
+    }
+  }, [user, guestInfo, navigate, addToast])
+
+  // Redirect if cart is empty
+  useEffect(() => {
+    if (items.length === 0) {
+      addToast("Your cart is empty", "error")
+      navigate("/")
+    }
+  }, [items.length, navigate, addToast])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsProcessing(true)
 
-    // Simulate payment processing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      // Simulate payment processing
+      await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    addToast("Order placed successfully! Thank you for your purchase.", "success")
+      if (user) {
+        addToast(`Order placed successfully! Thank you ${user.name}!`, "success")
+      } else if (guestInfo) {
+        addToast(`Order placed successfully! Thank you ${guestInfo.firstName}!`, "success")
+      }
 
-    clearCart()
-    setIsProcessing(false)
-    navigate("/")
+      clearCart()
+      navigate("/")
+    } catch (error) {
+      addToast("Payment failed. Please try again.", "error")
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
+  // Show loading or redirect if not authenticated
+  if (!user && !guestInfo) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Authentication Required</h2>
+          <p className="text-gray-600 mb-6">Redirecting to cart...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show message if cart is empty
+  if (items.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Cart is Empty</h2>
+          <p className="text-gray-600 mb-6">Add some products to proceed with checkout</p>
+          <Button onClick={() => navigate("/")}>Continue Shopping</Button>
+        </div>
+      </div>
+    )
   }
 
   const subtotal = getCartTotal()
@@ -38,7 +96,18 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
+          {user ? (
+            <p className="text-gray-600 mt-2">
+              Logged in as: <span className="font-medium text-blue-600">{user.email}</span>
+            </p>
+          ) : guestInfo ? (
+            <p className="text-gray-600 mt-2">
+              Guest checkout: <span className="font-medium text-blue-600">{guestInfo.email}</span>
+            </p>
+          ) : null}
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -58,14 +127,35 @@ const CheckoutPage = () => {
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
                         First Name
                       </label>
-                      <Input id="firstName" required />
+                      <Input
+                        id="firstName"
+                        required
+                        defaultValue={user?.name?.split(" ")[0] || guestInfo?.firstName || ""}
+                      />
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
                         Last Name
                       </label>
-                      <Input id="lastName" required />
+                      <Input
+                        id="lastName"
+                        required
+                        defaultValue={user?.name?.split(" ")[1] || guestInfo?.lastName || ""}
+                      />
                     </div>
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      required
+                      defaultValue={user?.email || guestInfo?.email || ""}
+                      readOnly
+                      className="bg-gray-50"
+                    />
                   </div>
                   <div>
                     <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
@@ -135,7 +225,11 @@ const CheckoutPage = () => {
                     <label htmlFor="cardName" className="block text-sm font-medium text-gray-700 mb-1">
                       Name on Card
                     </label>
-                    <Input id="cardName" required />
+                    <Input
+                      id="cardName"
+                      required
+                      defaultValue={user?.name || `${guestInfo?.firstName || ""} ${guestInfo?.lastName || ""}`}
+                    />
                   </div>
                 </CardContent>
               </Card>
@@ -186,7 +280,7 @@ const CheckoutPage = () => {
               </Card>
 
               <Button type="submit" className="w-full" size="lg" disabled={isProcessing}>
-                {isProcessing ? "Processing..." : `Place Order - ${formatPrice(total)}`}
+                {isProcessing ? "Processing Payment..." : `Place Order - ${formatPrice(total)}`}
               </Button>
             </div>
           </div>
